@@ -23,7 +23,7 @@ public class Utility {
 	public static File swapDir = null;
 	public static ArrayList<File> sqlFiles;
 	public static HashMap<String, Schema> tableSchemas = null;
-	public static HashMap<String, ArrayList<String>> tableDataTypes = null;
+	public static HashMap<String, ArrayList<Integer>> tableDataTypes = null;
 	public static int subQueryCounter = 0;
 	public static int grpByCounter = 0;
 

@@ -24,14 +24,14 @@ public class CreateTableParser {
 		Utility.checkAndSetTableAlias(table);
 		Schema schema = new Schema(table);
 		HashMap<String, Integer> cols = new HashMap<String, Integer>();
-		ArrayList<String> dataType = new ArrayList<String>();
+		ArrayList<Integer> dataType = new ArrayList<Integer>();
 		
 		if(Utility.tableSchemas != null){
 			@SuppressWarnings(StringUtility.UNCHECKED)
 			List<ColumnDefinition> list = ((CreateTable)statement).getColumnDefinitions();
 			for(int colIndex = 0; colIndex < list.size(); colIndex++){
 				cols.put(table.getAlias() + StringUtility.DOT + list.get(colIndex).getColumnName(), colIndex);
-				dataType.add(list.get(colIndex).getColDataType().toString());
+				dataType.add(getDataType(list.get(colIndex).getColDataType().toString()));
 			}
 			list = null;
 			schema.setColumns(cols);
@@ -39,4 +39,27 @@ public class CreateTableParser {
 			Utility.tableDataTypes.put(table.getName(), dataType);
 		}//end if
 	}//end parseStatement
+	
+	private static int getDataType(String dataType){
+		switch(dataType){
+		case StringUtility.INT:
+			return 1;
+		case StringUtility.DECIMAL:
+		case StringUtility.DOUBLE:
+			return 2;
+		case StringUtility.DATE1: 
+			return 3;
+		case StringUtility.CHAR2: 
+		case StringUtility.STRING: 
+		case StringUtility.VARCHAR:
+			return 4;
+		default:
+		{
+			if(dataType.contains(StringUtility.CHAR1) || dataType.contains(StringUtility.CHAR2)){
+				return 4;
+			}
+		}//default
+		}
+		return 0;
+	}
 }//end of class

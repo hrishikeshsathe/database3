@@ -69,10 +69,10 @@ public class Main {
 			Statement statement = null;
 			while((statement  = parser.Statement()) != null){
 				if(statement instanceof Select){
-//					long startTime = System.currentTimeMillis();
+					long startTime = System.currentTimeMillis();
 					System.err.println(statement.toString());
 					SelectParser.parseStatement(statement);
-//					System.out.println(System.currentTimeMillis() - startTime);
+					System.out.println(System.currentTimeMillis() - startTime);
 				}
 				else if(statement instanceof CreateTable){
 					CreateTableParser.parseStatement(statement);
@@ -102,7 +102,7 @@ public class Main {
 	
 	private static void resetAll(){
 		Utility.tableSchemas = new HashMap<String, Schema>();
-		Utility.tableDataTypes = new HashMap<String, ArrayList<String>>();
+		Utility.tableDataTypes = new HashMap<String, ArrayList<Integer>>();
 		Utility.subQueryCounter = 0;
 		Utility.grpByCounter = 0;
 	}

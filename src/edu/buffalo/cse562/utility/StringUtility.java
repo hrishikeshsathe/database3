@@ -21,6 +21,7 @@ public class StringUtility {
 	public static final String DATE1 = "DATE";
 	public static final String DATE2 = "Date";
 	public static final String DATE3 = "date";
+	public static final int iDATE = 3;
 	public static final String JOIN = " JOIN ";
 	public static final String DOT = ".";
 	public static final String DESC1 = " DESC";
@@ -35,10 +36,16 @@ public class StringUtility {
 	public static final String INT = "INT";
 	public static final String DECIMAL = "DECIMAL";
 	public static final String DOUBLE = "DOUBLE";
+	public static final int iINT = 1;
+	public static final int iDECIMAL = 2;
+	public static final int iDOUBLE = 2;
 	public static final String CHAR1 = "char";
 	public static final String CHAR2= "CHAR";
 	public static final String STRING = "STRING";
 	public static final String VARCHAR = "VARCHAR";
+	public static final int iCHAR= 4;
+	public static final int iSTRING = 4;
+	public static final int iVARCHAR = 4;
 	public static final String NORESULT1 = "NoResult";
 	public static final String NORESULT2 = "'NoResult'";
 	public static final String LONGVALUE = "LongValue";

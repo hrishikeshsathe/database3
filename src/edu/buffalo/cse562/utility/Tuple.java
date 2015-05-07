@@ -24,30 +24,30 @@ public class Tuple implements Comparable<Tuple>{
 	 * @param table
 	 */
 	public Tuple(String[] oneRow, String table){
-		ArrayList<String> dataType = Utility.tableDataTypes.get(table);
+		ArrayList<Integer> dataType = Utility.tableDataTypes.get(table);
 		oneTuple = new ArrayList<LeafValue>();
 		for(int i = 0; i < oneRow.length; i++){
 			switch(dataType.get(i)){
-			case StringUtility.INT:
+			case StringUtility.iINT:
 				oneTuple.add(new LongValue(oneRow[i])); 
 				break;
-			case StringUtility.DECIMAL:
-			case StringUtility.DOUBLE:
+			case StringUtility.iDECIMAL:
+//			case StringUtility.iDOUBLE:
 				oneTuple.add(new DoubleValue(oneRow[i])); 
 				break;
-			case StringUtility.DATE1: 
+			case StringUtility.iDATE: 
 				oneTuple.add(new DateValue(StringUtility.SPACE + oneRow[i] + StringUtility.SPACE)); 
 				break;
-			case StringUtility.CHAR2: 
-			case StringUtility.STRING: 
-			case StringUtility.VARCHAR:
+			case StringUtility.iCHAR: 
+//			case StringUtility.iSTRING: 
+//			case StringUtility.iVARCHAR:
 				oneTuple.add(new StringValue(StringUtility.SPACE + oneRow[i] + StringUtility.SPACE)); 
 				break;
 			default:
 			{
-				if(dataType.get(i).contains(StringUtility.CHAR1) || dataType.get(i).contains(StringUtility.CHAR2)){
+//				if(dataType.get(i).contains(StringUtility.CHAR1) || dataType.get(i).contains(StringUtility.CHAR2)){
 					oneTuple.add(new StringValue(StringUtility.SPACE + oneRow[i] + StringUtility.SPACE));
-				}
+//				}
 			}//default
 			}//switch
 		}//for

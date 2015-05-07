@@ -38,7 +38,7 @@ public class Tuple implements Comparable<Tuple>{
 			case StringUtility.DATE1: 
 				oneTuple.add(new DateValue(StringUtility.SPACE + oneRow[i] + StringUtility.SPACE)); 
 				break;
-			case StringUtility.CHAR2: 
+			case StringUtility.CHAR1: 
 			case StringUtility.STRING: 
 			case StringUtility.VARCHAR:
 				oneTuple.add(new StringValue(StringUtility.SPACE + oneRow[i] + StringUtility.SPACE)); 

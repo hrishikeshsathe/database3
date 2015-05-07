@@ -77,42 +77,29 @@ public class Evaluator extends Eval{
 	 */
 	public LeafValue eval(Function function) throws SQLException{
 		
-		String functionName = function.getName();
+		String functionName = function.getName().toLowerCase();
 		if(isHaving){
 			return eval(new Column(null, function.toString()));
 		}
-		else if(functionName.contains(StringUtility.DATE3) || functionName.contains(StringUtility.DATE2) || functionName.contains(StringUtility.DATE1)){
+		else if(functionName.contains(StringUtility.DATE3)){
 			return new DateValue(function.getParameters().getExpressions().get(0).toString());
 		}
 		else{
-			if(functionName.contains(StringUtility.COUNT3) || functionName.contains(StringUtility.COUNT2) || functionName.contains(StringUtility.COUNT1))
+			if(functionName.contains(StringUtility.COUNT3))
 				return AggregateFunctions.getCount(column);
 
 			LeafValue functionParameter = eval((Expression) function.getParameters().getExpressions().get(0));
 
 			if(functionName.contains(StringUtility.SUM3) || 
-					functionName.contains(StringUtility.AVG3) || functionName.contains(StringUtility.SUM2) || 
-					functionName.contains(StringUtility.AVG2) || functionName.contains(StringUtility.SUM1) || 
-					functionName.contains(StringUtility.AVG1))
+					functionName.contains(StringUtility.AVG3))
 				return AggregateFunctions.calculateSum(functionParameter, column);
 
-			else if(functionName.contains(StringUtility.MIN3) || functionName.contains(StringUtility.MIN2) || functionName.contains(StringUtility.MIN1))
+			else if(functionName.contains(StringUtility.MIN3))
 				return AggregateFunctions.getMinimum(functionParameter, column);
 
-			else if(functionName.contains(StringUtility.MAX3) || functionName.contains(StringUtility.MAX2) || functionName.contains(StringUtility.MAX1))
+			else if(functionName.contains(StringUtility.MAX3))
 				return AggregateFunctions.getMaximum(functionParameter, column);
 		}
 		return null;
 	}
-
-
-	public void setTuple(Tuple tuple) {
-		// TODO Auto-generated method stub
-		this.tuple = tuple;
-	}
-	
-	public void setColumn(LeafValue column){
-		this.column = column;
-	}
 }
-
